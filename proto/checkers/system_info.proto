@@ -1,0 +1,11 @@
+syntax = "proto3";
+package hugjobk.checkers.checkers;
+
+option go_package = "github.com/hugjobk/checkers/x/checkers/types";
+
+message SystemInfo {
+  uint64 nextId = 1; 
+  string fifoHeadIndex = 2; 
+  string fifoTailIndex = 3; 
+  
+}
