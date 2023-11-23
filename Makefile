@@ -12,6 +12,6 @@ export-accounts:
 	export bob=$(shell checkersd keys show bob -a)
 
 mock-expected-keepers:
-    mockgen -source=x/checkers/types/expected_keepers.go \
-        -package testutil \
-        -destination=x/checkers/testutil/expected_keepers_mocks.go
+	mockgen -source=x/checkers/types/expected_keepers.go \
+		-package testutil \
+		-destination=x/checkers/testutil/expected_keepers_mocks.go
