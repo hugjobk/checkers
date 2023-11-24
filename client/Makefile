@@ -23,3 +23,9 @@ gen-protoc-ts: download-cosmos-proto install-protoc-gen-ts
 		--proto_path="./proto" \
 		--ts_proto_opt="esModuleInterop=true,forceLong=long,useOptionals=messages" \
 		checkers/{}
+
+init-db:
+	cp -n ./src/server/db.json.example ./src/server/db.json || true
+
+reset-db:
+	cp -f ./src/server/db.json.example ./src/server/db.json
