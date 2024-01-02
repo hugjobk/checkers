@@ -513,6 +513,190 @@ func (m *QueryCanPlayMoveResponse) GetReason() string {
 	return ""
 }
 
+type QueryGetPlayerInfoRequest struct {
+	Index string `protobuf:"bytes,1,opt,name=index,proto3" json:"index,omitempty"`
+}
+
+func (m *QueryGetPlayerInfoRequest) Reset()         { *m = QueryGetPlayerInfoRequest{} }
+func (m *QueryGetPlayerInfoRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetPlayerInfoRequest) ProtoMessage()    {}
+func (*QueryGetPlayerInfoRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_3c482788bba85e7a, []int{10}
+}
+func (m *QueryGetPlayerInfoRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetPlayerInfoRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetPlayerInfoRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetPlayerInfoRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetPlayerInfoRequest.Merge(m, src)
+}
+func (m *QueryGetPlayerInfoRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetPlayerInfoRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetPlayerInfoRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetPlayerInfoRequest proto.InternalMessageInfo
+
+func (m *QueryGetPlayerInfoRequest) GetIndex() string {
+	if m != nil {
+		return m.Index
+	}
+	return ""
+}
+
+type QueryGetPlayerInfoResponse struct {
+	PlayerInfo PlayerInfo `protobuf:"bytes,1,opt,name=playerInfo,proto3" json:"playerInfo"`
+}
+
+func (m *QueryGetPlayerInfoResponse) Reset()         { *m = QueryGetPlayerInfoResponse{} }
+func (m *QueryGetPlayerInfoResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetPlayerInfoResponse) ProtoMessage()    {}
+func (*QueryGetPlayerInfoResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_3c482788bba85e7a, []int{11}
+}
+func (m *QueryGetPlayerInfoResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetPlayerInfoResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetPlayerInfoResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetPlayerInfoResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetPlayerInfoResponse.Merge(m, src)
+}
+func (m *QueryGetPlayerInfoResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetPlayerInfoResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetPlayerInfoResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetPlayerInfoResponse proto.InternalMessageInfo
+
+func (m *QueryGetPlayerInfoResponse) GetPlayerInfo() PlayerInfo {
+	if m != nil {
+		return m.PlayerInfo
+	}
+	return PlayerInfo{}
+}
+
+type QueryAllPlayerInfoRequest struct {
+	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryAllPlayerInfoRequest) Reset()         { *m = QueryAllPlayerInfoRequest{} }
+func (m *QueryAllPlayerInfoRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryAllPlayerInfoRequest) ProtoMessage()    {}
+func (*QueryAllPlayerInfoRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_3c482788bba85e7a, []int{12}
+}
+func (m *QueryAllPlayerInfoRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllPlayerInfoRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllPlayerInfoRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllPlayerInfoRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllPlayerInfoRequest.Merge(m, src)
+}
+func (m *QueryAllPlayerInfoRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllPlayerInfoRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllPlayerInfoRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllPlayerInfoRequest proto.InternalMessageInfo
+
+func (m *QueryAllPlayerInfoRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryAllPlayerInfoResponse struct {
+	PlayerInfo []PlayerInfo        `protobuf:"bytes,1,rep,name=playerInfo,proto3" json:"playerInfo"`
+	Pagination *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryAllPlayerInfoResponse) Reset()         { *m = QueryAllPlayerInfoResponse{} }
+func (m *QueryAllPlayerInfoResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryAllPlayerInfoResponse) ProtoMessage()    {}
+func (*QueryAllPlayerInfoResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_3c482788bba85e7a, []int{13}
+}
+func (m *QueryAllPlayerInfoResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllPlayerInfoResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllPlayerInfoResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllPlayerInfoResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllPlayerInfoResponse.Merge(m, src)
+}
+func (m *QueryAllPlayerInfoResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllPlayerInfoResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllPlayerInfoResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllPlayerInfoResponse proto.InternalMessageInfo
+
+func (m *QueryAllPlayerInfoResponse) GetPlayerInfo() []PlayerInfo {
+	if m != nil {
+		return m.PlayerInfo
+	}
+	return nil
+}
+
+func (m *QueryAllPlayerInfoResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*QueryParamsRequest)(nil), "hugjobk.checkers.checkers.QueryParamsRequest")
 	proto.RegisterType((*QueryParamsResponse)(nil), "hugjobk.checkers.checkers.QueryParamsResponse")
@@ -524,59 +708,68 @@ func init() {
 	proto.RegisterType((*QueryAllStoredGameResponse)(nil), "hugjobk.checkers.checkers.QueryAllStoredGameResponse")
 	proto.RegisterType((*QueryCanPlayMoveRequest)(nil), "hugjobk.checkers.checkers.QueryCanPlayMoveRequest")
 	proto.RegisterType((*QueryCanPlayMoveResponse)(nil), "hugjobk.checkers.checkers.QueryCanPlayMoveResponse")
+	proto.RegisterType((*QueryGetPlayerInfoRequest)(nil), "hugjobk.checkers.checkers.QueryGetPlayerInfoRequest")
+	proto.RegisterType((*QueryGetPlayerInfoResponse)(nil), "hugjobk.checkers.checkers.QueryGetPlayerInfoResponse")
+	proto.RegisterType((*QueryAllPlayerInfoRequest)(nil), "hugjobk.checkers.checkers.QueryAllPlayerInfoRequest")
+	proto.RegisterType((*QueryAllPlayerInfoResponse)(nil), "hugjobk.checkers.checkers.QueryAllPlayerInfoResponse")
 }
 
 func init() { proto.RegisterFile("checkers/query.proto", fileDescriptor_3c482788bba85e7a) }
 
 var fileDescriptor_3c482788bba85e7a = []byte{
-	// 743 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x95, 0x4d, 0x6f, 0xd3, 0x4c,
-	0x10, 0xc7, 0xe3, 0xbe, 0xe4, 0x69, 0xb6, 0x7a, 0x24, 0xb4, 0x04, 0x48, 0x4d, 0x15, 0x5a, 0x23,
-	0x4a, 0x41, 0xe0, 0xa5, 0x2d, 0x70, 0x45, 0x2d, 0x52, 0xab, 0x0a, 0x81, 0x8a, 0x91, 0x50, 0x0d,
-	0x87, 0x68, 0x93, 0x6e, 0x5d, 0x53, 0xdb, 0xeb, 0x7a, 0x9d, 0xaa, 0x51, 0x94, 0x0b, 0x17, 0xae,
-	0x08, 0x3e, 0x00, 0x67, 0x24, 0x2e, 0xf0, 0x29, 0x7a, 0xac, 0xc4, 0x05, 0x2e, 0x08, 0xb5, 0x7c,
-	0x10, 0xe4, 0xdd, 0xf5, 0x4b, 0xea, 0x34, 0x49, 0xc5, 0xa5, 0xdd, 0x9d, 0x9d, 0xd9, 0xff, 0xcf,
-	0xb3, 0x33, 0x13, 0x50, 0x6e, 0xec, 0x90, 0xc6, 0x2e, 0x09, 0x18, 0xda, 0x6b, 0x92, 0xa0, 0xa5,
-	0xfb, 0x01, 0x0d, 0x29, 0x9c, 0xda, 0x69, 0x5a, 0x6f, 0x68, 0x7d, 0x57, 0x8f, 0x4f, 0x93, 0x85,
-	0x5a, 0xb6, 0xa8, 0x45, 0xb9, 0x17, 0x8a, 0x56, 0x22, 0x40, 0x9d, 0xb6, 0x28, 0xb5, 0x1c, 0x82,
-	0xb0, 0x6f, 0x23, 0xec, 0x79, 0x34, 0xc4, 0xa1, 0x4d, 0x3d, 0x26, 0x4f, 0x6f, 0x37, 0x28, 0x73,
-	0x29, 0x43, 0x75, 0xcc, 0x88, 0xd0, 0x41, 0xfb, 0x0b, 0x75, 0x12, 0xe2, 0x05, 0xe4, 0x63, 0xcb,
-	0xf6, 0xb8, 0xb3, 0xf4, 0xbd, 0x94, 0x00, 0xf9, 0x38, 0xc0, 0x6e, 0x7c, 0x85, 0x9a, 0x98, 0x59,
-	0x8b, 0x85, 0xc4, 0xad, 0xd9, 0xde, 0x36, 0xcd, 0x9f, 0x85, 0x34, 0x20, 0x5b, 0x35, 0x0b, 0xbb,
-	0x44, 0x9c, 0x69, 0x65, 0x00, 0x9f, 0x47, 0x82, 0x1b, 0xfc, 0x32, 0x83, 0xec, 0x35, 0x09, 0x0b,
-	0xb5, 0x97, 0xe0, 0x62, 0x97, 0x95, 0xf9, 0xd4, 0x63, 0x04, 0x3e, 0x02, 0x45, 0x21, 0x5a, 0x51,
-	0x66, 0x94, 0xf9, 0xc9, 0xc5, 0x59, 0xfd, 0xcc, 0x3c, 0xe8, 0x22, 0x74, 0x65, 0xec, 0xf0, 0xd7,
-	0xb5, 0x82, 0x21, 0xc3, 0xb4, 0xab, 0x60, 0x8a, 0xdf, 0xbb, 0x46, 0xc2, 0x17, 0x1c, 0x73, 0xdd,
-	0xdb, 0xa6, 0xb1, 0xa8, 0x0d, 0xd4, 0x5e, 0x87, 0x52, 0xfb, 0x09, 0x00, 0xa9, 0x55, 0xea, 0xdf,
-	0xe8, 0xa3, 0x9f, 0x3a, 0x4b, 0x86, 0x4c, 0xb8, 0xb6, 0x90, 0xe1, 0xe0, 0x29, 0x59, 0xc3, 0x2e,
-	0x91, 0x1c, 0xb0, 0x0c, 0xc6, 0x6d, 0x6f, 0x8b, 0x1c, 0x70, 0x91, 0x92, 0x21, 0x36, 0x5d, 0x74,
-	0x99, 0x90, 0x94, 0x8e, 0x25, 0xd6, 0x61, 0xe8, 0x12, 0xe7, 0x98, 0x2e, 0x0d, 0xd7, 0x1a, 0x92,
-	0x6e, 0xd9, 0x71, 0xf2, 0x74, 0xab, 0x00, 0xa4, 0x35, 0x21, 0x95, 0xe6, 0x74, 0x51, 0x40, 0x7a,
-	0x54, 0x40, 0xba, 0x28, 0x54, 0x59, 0x40, 0xfa, 0x06, 0xb6, 0xe2, 0x58, 0x23, 0x13, 0xa9, 0x7d,
-	0x53, 0xe4, 0x07, 0x9d, 0x52, 0x39, 0xe3, 0x83, 0x46, 0xff, 0xe1, 0x83, 0xe0, 0x5a, 0x17, 0xf3,
-	0x08, 0x67, 0xbe, 0x39, 0x90, 0x59, 0x90, 0x74, 0x41, 0x7f, 0x52, 0xc0, 0x15, 0x0e, 0xfd, 0x18,
-	0x7b, 0x1b, 0x0e, 0x6e, 0x3d, 0xa5, 0xfb, 0x49, 0x62, 0xa6, 0x41, 0x29, 0xaa, 0xeb, 0xf5, 0xcc,
-	0xd3, 0xa5, 0x06, 0x78, 0x19, 0x14, 0x7d, 0x07, 0xb7, 0x48, 0xc0, 0xe5, 0x4b, 0x86, 0xdc, 0x45,
-	0x8f, 0xbd, 0x1d, 0x50, 0x77, 0xb3, 0x32, 0x3a, 0xa3, 0xcc, 0x8f, 0x19, 0x62, 0x13, 0x5b, 0xcd,
-	0xca, 0x58, 0x6a, 0x35, 0xe1, 0x05, 0x30, 0x1a, 0xd2, 0xcd, 0xca, 0x38, 0xb7, 0x45, 0x4b, 0x61,
-	0x31, 0x2b, 0xc5, 0xd8, 0x62, 0x6a, 0xcf, 0x40, 0x25, 0x0f, 0x28, 0x73, 0xaa, 0x82, 0x09, 0x9f,
-	0x32, 0x66, 0xd7, 0x1d, 0x51, 0x22, 0x13, 0x46, 0xb2, 0x8f, 0xf8, 0x02, 0x82, 0x99, 0x4c, 0x4f,
-	0xc9, 0x90, 0xbb, 0xc5, 0x77, 0xff, 0x81, 0x71, 0x7e, 0x21, 0xfc, 0xa0, 0x80, 0xa2, 0x68, 0x2a,
-	0x78, 0xb7, 0xcf, 0x43, 0xe4, 0xbb, 0x59, 0xd5, 0x87, 0x75, 0x17, 0x9c, 0xda, 0xad, 0xb7, 0xdf,
-	0xff, 0x7c, 0x1c, 0xb9, 0x0e, 0x67, 0x91, 0x8c, 0x43, 0xc9, 0x00, 0x39, 0x35, 0x7c, 0xe0, 0x67,
-	0x25, 0xdb, 0x96, 0xf0, 0xfe, 0x20, 0xa5, 0x5e, 0x8d, 0xaf, 0x3e, 0x38, 0x67, 0x94, 0xc4, 0xd4,
-	0x39, 0xe6, 0x3c, 0x9c, 0xeb, 0x83, 0x99, 0x19, 0x86, 0xf0, 0x6b, 0xc4, 0x9a, 0x16, 0xe5, 0x50,
-	0xac, 0xa7, 0xdb, 0x6f, 0x38, 0xd6, 0x5c, 0x3b, 0x69, 0x0f, 0x39, 0xeb, 0x3d, 0xa8, 0xf7, 0x63,
-	0x4d, 0x87, 0x33, 0x6a, 0xf3, 0xa1, 0xd3, 0x81, 0x5f, 0x14, 0xf0, 0x7f, 0x7a, 0xdd, 0xb2, 0xe3,
-	0x0c, 0xc6, 0xee, 0x35, 0x35, 0x06, 0x63, 0xf7, 0x9c, 0x02, 0xc3, 0xa5, 0x38, 0xc5, 0x86, 0x3f,
-	0x15, 0x30, 0x99, 0xa9, 0x7c, 0xb8, 0x38, 0x48, 0x36, 0xdf, 0xc7, 0xea, 0xd2, 0xb9, 0x62, 0x24,
-	0x28, 0xe6, 0xa0, 0xaf, 0xa1, 0xd9, 0x07, 0xb4, 0x81, 0xbd, 0x5a, 0xd4, 0xf5, 0x35, 0x97, 0xee,
-	0x13, 0xd4, 0x4e, 0x66, 0x43, 0x07, 0xb5, 0xc5, 0x30, 0xe8, 0xa0, 0x36, 0x6f, 0x7f, 0xf9, 0xdf,
-	0xec, 0xa0, 0x76, 0x48, 0x37, 0xf9, 0x5f, 0xb3, 0xb3, 0xb2, 0x7a, 0x78, 0x5c, 0x55, 0x8e, 0x8e,
-	0xab, 0xca, 0xef, 0xe3, 0xaa, 0xf2, 0xfe, 0xa4, 0x5a, 0x38, 0x3a, 0xa9, 0x16, 0x7e, 0x9c, 0x54,
-	0x0b, 0xaf, 0xee, 0x58, 0x76, 0xb8, 0xd3, 0xac, 0xeb, 0x0d, 0xea, 0xe6, 0xe5, 0x0f, 0xd2, 0x65,
-	0xd8, 0xf2, 0x09, 0xab, 0x17, 0xf9, 0x0f, 0xef, 0xd2, 0xdf, 0x00, 0x00, 0x00, 0xff, 0xff, 0x90,
-	0x57, 0xef, 0xb4, 0x5a, 0x08, 0x00, 0x00,
+	// 826 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x96, 0xc1, 0x6e, 0xd3, 0x30,
+	0x18, 0xc7, 0x9b, 0x75, 0xab, 0x56, 0x4f, 0x48, 0xc8, 0x14, 0xe8, 0xc2, 0x54, 0xb6, 0x20, 0xc6,
+	0x40, 0x90, 0xb0, 0x0d, 0xb8, 0xa2, 0x0d, 0x69, 0xd3, 0x84, 0x40, 0x25, 0x48, 0x68, 0x85, 0x43,
+	0xe5, 0x76, 0x5e, 0x16, 0x96, 0xc4, 0x59, 0x92, 0x4e, 0xab, 0xaa, 0x5e, 0x78, 0x02, 0x04, 0x0f,
+	0xc0, 0x19, 0x89, 0x0b, 0x3c, 0xc5, 0x8e, 0x93, 0xb8, 0xc0, 0x05, 0xa1, 0x8d, 0x13, 0x4f, 0x81,
+	0xe2, 0x38, 0xb1, 0xbb, 0x74, 0x6d, 0xc6, 0xe0, 0xb2, 0xd9, 0x9f, 0xfd, 0xf9, 0xfb, 0xd9, 0xfe,
+	0xfb, 0x9f, 0x82, 0x52, 0x73, 0x0b, 0x37, 0xb7, 0xb1, 0xe7, 0x6b, 0x3b, 0x2d, 0xec, 0xb5, 0x55,
+	0xd7, 0x23, 0x01, 0x81, 0x93, 0x5b, 0x2d, 0xe3, 0x35, 0x69, 0x6c, 0xab, 0xf1, 0x68, 0xd2, 0x90,
+	0x4b, 0x06, 0x31, 0x08, 0x9d, 0xa5, 0x85, 0xad, 0x28, 0x41, 0x9e, 0x32, 0x08, 0x31, 0x2c, 0xac,
+	0x21, 0xd7, 0xd4, 0x90, 0xe3, 0x90, 0x00, 0x05, 0x26, 0x71, 0x7c, 0x36, 0x7a, 0xab, 0x49, 0x7c,
+	0x9b, 0xf8, 0x5a, 0x03, 0xf9, 0x38, 0xaa, 0xa3, 0xed, 0xce, 0x37, 0x70, 0x80, 0xe6, 0x35, 0x17,
+	0x19, 0xa6, 0x43, 0x27, 0xb3, 0xb9, 0x17, 0x13, 0x20, 0x17, 0x79, 0xc8, 0x8e, 0x97, 0x90, 0x93,
+	0xb0, 0xdf, 0xf6, 0x03, 0x6c, 0xd7, 0x4d, 0x67, 0x93, 0xa4, 0xc7, 0x02, 0xe2, 0xe1, 0x8d, 0xba,
+	0x81, 0x6c, 0x9c, 0x1a, 0x73, 0x2d, 0xd4, 0xc6, 0x9e, 0x90, 0xa7, 0x94, 0x00, 0x7c, 0x16, 0xc2,
+	0x54, 0x69, 0x21, 0x1d, 0xef, 0xb4, 0xb0, 0x1f, 0x28, 0x2f, 0xc0, 0x85, 0x9e, 0xa8, 0xef, 0x12,
+	0xc7, 0xc7, 0xf0, 0x21, 0x28, 0x44, 0x40, 0x65, 0x69, 0x5a, 0x9a, 0x9b, 0x58, 0x98, 0x51, 0x4f,
+	0x3c, 0x23, 0x35, 0x4a, 0x5d, 0x1e, 0xdd, 0xff, 0x71, 0x35, 0xa7, 0xb3, 0x34, 0xe5, 0x0a, 0x98,
+	0xa4, 0xeb, 0xae, 0xe2, 0xe0, 0x39, 0xdd, 0xc2, 0x9a, 0xb3, 0x49, 0xe2, 0xa2, 0x26, 0x90, 0xfb,
+	0x0d, 0xb2, 0xda, 0x8f, 0x01, 0xe0, 0x51, 0x56, 0xff, 0xfa, 0x80, 0xfa, 0x7c, 0x32, 0x63, 0x10,
+	0xd2, 0x95, 0x79, 0x81, 0x83, 0x1e, 0xd7, 0x2a, 0xb2, 0x31, 0xe3, 0x80, 0x25, 0x30, 0x66, 0x3a,
+	0x1b, 0x78, 0x8f, 0x16, 0x29, 0xea, 0x51, 0xa7, 0x87, 0x4e, 0x48, 0xe1, 0x74, 0x7e, 0x12, 0xcd,
+	0x42, 0x97, 0x4c, 0x8e, 0xe9, 0x78, 0xba, 0xd2, 0x64, 0x74, 0x4b, 0x96, 0x95, 0xa6, 0x5b, 0x01,
+	0x80, 0xeb, 0x85, 0x55, 0x9a, 0x55, 0x23, 0x71, 0xa9, 0xa1, 0xb8, 0xd4, 0x48, 0xc4, 0x4c, 0x5c,
+	0x6a, 0x15, 0x19, 0x71, 0xae, 0x2e, 0x64, 0x2a, 0x5f, 0x24, 0xb6, 0xa1, 0x63, 0x55, 0x4e, 0xd8,
+	0x50, 0xfe, 0x0c, 0x1b, 0x82, 0xab, 0x3d, 0xcc, 0x23, 0x94, 0xf9, 0xc6, 0x50, 0xe6, 0x88, 0xa4,
+	0x07, 0xfa, 0x83, 0x04, 0x2e, 0x53, 0xe8, 0x47, 0xc8, 0xa9, 0x5a, 0xa8, 0xfd, 0x84, 0xec, 0x26,
+	0x07, 0x33, 0x05, 0x8a, 0xa1, 0xe6, 0xd7, 0x84, 0xab, 0xe3, 0x01, 0x78, 0x09, 0x14, 0x22, 0xf1,
+	0xd3, 0xf2, 0x45, 0x9d, 0xf5, 0xc2, 0xcb, 0xde, 0xf4, 0x88, 0xbd, 0x5e, 0xce, 0x4f, 0x4b, 0x73,
+	0xa3, 0x7a, 0xd4, 0x89, 0xa3, 0xb5, 0xf2, 0x28, 0x8f, 0xd6, 0xe0, 0x79, 0x90, 0x0f, 0xc8, 0x7a,
+	0x79, 0x8c, 0xc6, 0xc2, 0x66, 0x14, 0xa9, 0x95, 0x0b, 0x71, 0xa4, 0xa6, 0x3c, 0x05, 0xe5, 0x34,
+	0x20, 0x3b, 0x53, 0x19, 0x8c, 0xbb, 0xc4, 0xf7, 0xcd, 0x86, 0x15, 0x49, 0x64, 0x5c, 0x4f, 0xfa,
+	0x21, 0x9f, 0x87, 0x91, 0xcf, 0x8e, 0xa7, 0xa8, 0xb3, 0x9e, 0xa8, 0xd4, 0x2a, 0x25, 0x16, 0x5e,
+	0xcc, 0x70, 0xa5, 0x8a, 0x29, 0xfc, 0x62, 0xdd, 0x24, 0x9a, 0x41, 0xa9, 0x7c, 0x89, 0xf8, 0x62,
+	0x79, 0xba, 0xa8, 0xd4, 0x34, 0xdd, 0xff, 0x50, 0x6a, 0x86, 0x0d, 0xe5, 0xcf, 0xb0, 0xa1, 0x7f,
+	0xa6, 0xd4, 0x85, 0xdf, 0x45, 0x30, 0x46, 0xa1, 0xe1, 0x3b, 0x09, 0x14, 0x22, 0x33, 0x84, 0x77,
+	0x06, 0x60, 0xa5, 0x5d, 0x58, 0x56, 0xb3, 0x4e, 0x8f, 0xea, 0x2b, 0x37, 0xdf, 0x7c, 0xfd, 0xf5,
+	0x7e, 0xe4, 0x1a, 0x9c, 0xd1, 0x58, 0x9e, 0x96, 0x18, 0xff, 0xb1, 0x0f, 0x0a, 0xfc, 0x28, 0x89,
+	0x76, 0x0a, 0xef, 0x0d, 0xab, 0xd4, 0xcf, 0xb0, 0xe5, 0xfb, 0xa7, 0xcc, 0x62, 0x98, 0x2a, 0xc5,
+	0x9c, 0x83, 0xb3, 0x03, 0x30, 0x85, 0x0f, 0x1c, 0xfc, 0x1c, 0xb2, 0x72, 0x33, 0xc9, 0xc4, 0x7a,
+	0xdc, 0x36, 0xb3, 0xb1, 0xa6, 0x6c, 0x50, 0x79, 0x40, 0x59, 0xef, 0x42, 0x75, 0x10, 0x2b, 0xff,
+	0xe0, 0x6a, 0x1d, 0xfa, 0x04, 0xbb, 0xf0, 0x93, 0x04, 0xce, 0xf1, 0xe5, 0x96, 0x2c, 0x6b, 0x38,
+	0x76, 0x3f, 0xb7, 0x1f, 0x8e, 0xdd, 0xd7, 0xbd, 0xb3, 0x1d, 0x31, 0xc7, 0x86, 0xdf, 0x25, 0x30,
+	0x21, 0x38, 0x16, 0x5c, 0x18, 0x56, 0x36, 0xed, 0xbf, 0xf2, 0xe2, 0xa9, 0x72, 0x18, 0x28, 0xa2,
+	0xa0, 0xaf, 0x60, 0x6d, 0x00, 0x68, 0x13, 0x39, 0xf5, 0xf0, 0x89, 0xd6, 0x6d, 0xb2, 0x8b, 0xb5,
+	0x4e, 0xe2, 0xe9, 0x5d, 0xad, 0x13, 0xbd, 0xdc, 0xae, 0xd6, 0xa1, 0xb6, 0xcd, 0xfe, 0xd7, 0xba,
+	0x5a, 0x27, 0x20, 0xeb, 0xf4, 0x6f, 0xad, 0x4b, 0xe5, 0xc3, 0xdf, 0x7c, 0x26, 0xf9, 0xa4, 0xbc,
+	0x2c, 0x93, 0x7c, 0xd2, 0xde, 0x94, 0x49, 0x3e, 0xc2, 0x6f, 0xb2, 0x1e, 0xf9, 0xf0, 0xe5, 0xb2,
+	0xca, 0xe7, 0x2f, 0xb0, 0xfb, 0x5a, 0x6a, 0x26, 0xf9, 0x08, 0xd8, 0xcb, 0x2b, 0xfb, 0x87, 0x15,
+	0xe9, 0xe0, 0xb0, 0x22, 0xfd, 0x3c, 0xac, 0x48, 0x6f, 0x8f, 0x2a, 0xb9, 0x83, 0xa3, 0x4a, 0xee,
+	0xdb, 0x51, 0x25, 0xf7, 0xf2, 0xb6, 0x61, 0x06, 0x5b, 0xad, 0x86, 0xda, 0x24, 0x76, 0x7a, 0xad,
+	0x3d, 0xde, 0x0c, 0xda, 0x2e, 0xf6, 0x1b, 0x05, 0xfa, 0x9b, 0x74, 0xf1, 0x4f, 0x00, 0x00, 0x00,
+	0xff, 0xff, 0xee, 0x57, 0xec, 0xed, 0x91, 0x0b, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -601,6 +794,10 @@ type QueryClient interface {
 	StoredGameAll(ctx context.Context, in *QueryAllStoredGameRequest, opts ...grpc.CallOption) (*QueryAllStoredGameResponse, error)
 	// Queries a list of CanPlayMove items.
 	CanPlayMove(ctx context.Context, in *QueryCanPlayMoveRequest, opts ...grpc.CallOption) (*QueryCanPlayMoveResponse, error)
+	// Queries a PlayerInfo by index.
+	PlayerInfo(ctx context.Context, in *QueryGetPlayerInfoRequest, opts ...grpc.CallOption) (*QueryGetPlayerInfoResponse, error)
+	// Queries a list of PlayerInfo items.
+	PlayerInfoAll(ctx context.Context, in *QueryAllPlayerInfoRequest, opts ...grpc.CallOption) (*QueryAllPlayerInfoResponse, error)
 }
 
 type queryClient struct {
@@ -656,6 +853,24 @@ func (c *queryClient) CanPlayMove(ctx context.Context, in *QueryCanPlayMoveReque
 	return out, nil
 }
 
+func (c *queryClient) PlayerInfo(ctx context.Context, in *QueryGetPlayerInfoRequest, opts ...grpc.CallOption) (*QueryGetPlayerInfoResponse, error) {
+	out := new(QueryGetPlayerInfoResponse)
+	err := c.cc.Invoke(ctx, "/hugjobk.checkers.checkers.Query/PlayerInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) PlayerInfoAll(ctx context.Context, in *QueryAllPlayerInfoRequest, opts ...grpc.CallOption) (*QueryAllPlayerInfoResponse, error) {
+	out := new(QueryAllPlayerInfoResponse)
+	err := c.cc.Invoke(ctx, "/hugjobk.checkers.checkers.Query/PlayerInfoAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
@@ -668,6 +883,10 @@ type QueryServer interface {
 	StoredGameAll(context.Context, *QueryAllStoredGameRequest) (*QueryAllStoredGameResponse, error)
 	// Queries a list of CanPlayMove items.
 	CanPlayMove(context.Context, *QueryCanPlayMoveRequest) (*QueryCanPlayMoveResponse, error)
+	// Queries a PlayerInfo by index.
+	PlayerInfo(context.Context, *QueryGetPlayerInfoRequest) (*QueryGetPlayerInfoResponse, error)
+	// Queries a list of PlayerInfo items.
+	PlayerInfoAll(context.Context, *QueryAllPlayerInfoRequest) (*QueryAllPlayerInfoResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -688,6 +907,12 @@ func (*UnimplementedQueryServer) StoredGameAll(ctx context.Context, req *QueryAl
 }
 func (*UnimplementedQueryServer) CanPlayMove(ctx context.Context, req *QueryCanPlayMoveRequest) (*QueryCanPlayMoveResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CanPlayMove not implemented")
+}
+func (*UnimplementedQueryServer) PlayerInfo(ctx context.Context, req *QueryGetPlayerInfoRequest) (*QueryGetPlayerInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PlayerInfo not implemented")
+}
+func (*UnimplementedQueryServer) PlayerInfoAll(ctx context.Context, req *QueryAllPlayerInfoRequest) (*QueryAllPlayerInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PlayerInfoAll not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -784,6 +1009,42 @@ func _Query_CanPlayMove_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_PlayerInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetPlayerInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).PlayerInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hugjobk.checkers.checkers.Query/PlayerInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).PlayerInfo(ctx, req.(*QueryGetPlayerInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_PlayerInfoAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllPlayerInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).PlayerInfoAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hugjobk.checkers.checkers.Query/PlayerInfoAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).PlayerInfoAll(ctx, req.(*QueryAllPlayerInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Query_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "hugjobk.checkers.checkers.Query",
 	HandlerType: (*QueryServer)(nil),
@@ -807,6 +1068,14 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CanPlayMove",
 			Handler:    _Query_CanPlayMove_Handler,
+		},
+		{
+			MethodName: "PlayerInfo",
+			Handler:    _Query_PlayerInfo_Handler,
+		},
+		{
+			MethodName: "PlayerInfoAll",
+			Handler:    _Query_PlayerInfoAll_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -1169,6 +1438,153 @@ func (m *QueryCanPlayMoveResponse) MarshalToSizedBuffer(dAtA []byte) (int, error
 	return len(dAtA) - i, nil
 }
 
+func (m *QueryGetPlayerInfoRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetPlayerInfoRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetPlayerInfoRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Index) > 0 {
+		i -= len(m.Index)
+		copy(dAtA[i:], m.Index)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Index)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetPlayerInfoResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetPlayerInfoResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetPlayerInfoResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.PlayerInfo.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllPlayerInfoRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllPlayerInfoRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllPlayerInfoRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllPlayerInfoResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllPlayerInfoResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllPlayerInfoResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.PlayerInfo) > 0 {
+		for iNdEx := len(m.PlayerInfo) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.PlayerInfo[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintQuery(dAtA []byte, offset int, v uint64) int {
 	offset -= sovQuery(v)
 	base := offset
@@ -1316,6 +1732,62 @@ func (m *QueryCanPlayMoveResponse) Size() (n int) {
 	}
 	l = len(m.Reason)
 	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetPlayerInfoRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Index)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetPlayerInfoResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.PlayerInfo.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryAllPlayerInfoRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryAllPlayerInfoResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.PlayerInfo) > 0 {
+		for _, e := range m.PlayerInfo {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
 		n += 1 + l + sovQuery(uint64(l))
 	}
 	return n
@@ -2234,6 +2706,377 @@ func (m *QueryCanPlayMoveResponse) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			m.Reason = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetPlayerInfoRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetPlayerInfoRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetPlayerInfoRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Index = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetPlayerInfoResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetPlayerInfoResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetPlayerInfoResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field PlayerInfo", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.PlayerInfo.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllPlayerInfoRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllPlayerInfoRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllPlayerInfoRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllPlayerInfoResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllPlayerInfoResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllPlayerInfoResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field PlayerInfo", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.PlayerInfo = append(m.PlayerInfo, PlayerInfo{})
+			if err := m.PlayerInfo[len(m.PlayerInfo)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
