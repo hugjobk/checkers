@@ -1,0 +1,21 @@
+syntax = "proto3";
+package hugjobk.checkers.leaderboard;
+
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/hugjobk/checkers/x/leaderboard/types";
+
+message Leaderboard {
+  repeated Winner winners = 1 [(gogoproto.nullable) = false];
+}
+
+message Winner {
+  string address = 1;
+  uint64 wonCount = 2;
+  uint64 addedAt = 3;
+}
+
+message Candidate {
+  bytes address = 1;
+  uint64 wonCount = 2;
+}

@@ -86,6 +86,7 @@ import (
 	ibcporttypes "github.com/cosmos/ibc-go/v3/modules/core/05-port/types"
 	ibchost "github.com/cosmos/ibc-go/v3/modules/core/24-host"
 	ibckeeper "github.com/cosmos/ibc-go/v3/modules/core/keeper"
+	"github.com/hugjobk/checkers/app/upgrades/v1_1tov2"
 	"github.com/hugjobk/checkers/app/upgrades/v1tov1_1"
 	cv2types "github.com/hugjobk/checkers/x/checkers/migrations/cv2/types"
 	"github.com/spf13/cast"
@@ -107,6 +108,11 @@ import (
 	checkersmodule "github.com/hugjobk/checkers/x/checkers"
 	checkersmodulekeeper "github.com/hugjobk/checkers/x/checkers/keeper"
 	checkersmoduletypes "github.com/hugjobk/checkers/x/checkers/types"
+	leaderboardmodule "github.com/hugjobk/checkers/x/leaderboard"
+	leaderboardmodulekeeper "github.com/hugjobk/checkers/x/leaderboard/keeper"
+	leaderboardmodulemigrationscv2 "github.com/hugjobk/checkers/x/leaderboard/migrations/cv2"
+	leaderboardmodulemigrationscv2types "github.com/hugjobk/checkers/x/leaderboard/migrations/cv2/types"
+	leaderboardmoduletypes "github.com/hugjobk/checkers/x/leaderboard/types"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 )
 
@@ -162,6 +168,7 @@ var (
 		vesting.AppModuleBasic{},
 		monitoringp.AppModuleBasic{},
 		checkersmodule.AppModuleBasic{},
+		leaderboardmodule.AppModuleBasic{},
 		// this line is used by starport scaffolding # stargate/app/moduleBasic
 	)
 
@@ -236,6 +243,8 @@ type App struct {
 	ScopedMonitoringKeeper capabilitykeeper.ScopedKeeper
 
 	CheckersKeeper checkersmodulekeeper.Keeper
+
+	LeaderboardKeeper leaderboardmodulekeeper.Keeper
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
 
 	// mm is the module manager
@@ -300,10 +309,11 @@ func NewApp(
 		govtypes.StoreKey, paramstypes.StoreKey, ibchost.StoreKey, upgradetypes.StoreKey, feegrant.StoreKey,
 		evidencetypes.StoreKey, ibctransfertypes.StoreKey, capabilitytypes.StoreKey, monitoringptypes.StoreKey,
 		checkersmoduletypes.StoreKey,
+		leaderboardmoduletypes.StoreKey,
 		// this line is used by starport scaffolding # stargate/app/storeKey
 	)
-	tkeys := sdk.NewTransientStoreKeys(paramstypes.TStoreKey)
-	memKeys := sdk.NewMemoryStoreKeys(capabilitytypes.MemStoreKey)
+	tkeys := sdk.NewTransientStoreKeys(paramstypes.TStoreKey, leaderboardmoduletypes.TStoreKey)
+	memKeys := sdk.NewMemoryStoreKeys(capabilitytypes.MemStoreKey, leaderboardmoduletypes.MemStoreKey)
 
 	app := &App{
 		BaseApp:           bApp,
@@ -421,6 +431,15 @@ func NewApp(
 	)
 	monitoringModule := monitoringp.NewAppModule(appCodec, app.MonitoringKeeper)
 
+	app.LeaderboardKeeper = *leaderboardmodulekeeper.NewKeeper(
+		appCodec,
+		keys[leaderboardmoduletypes.StoreKey],
+		memKeys[leaderboardmoduletypes.MemStoreKey],
+		tkeys[leaderboardmoduletypes.TStoreKey],
+		app.GetSubspace(leaderboardmoduletypes.ModuleName),
+	)
+	leaderboardModule := leaderboardmodule.NewAppModule(appCodec, app.LeaderboardKeeper, app.AccountKeeper, app.BankKeeper)
+
 	app.CheckersKeeper = *checkersmodulekeeper.NewKeeper(
 		app.BankKeeper,
 		appCodec,
@@ -428,6 +447,13 @@ func NewApp(
 		keys[checkersmoduletypes.MemStoreKey],
 		app.GetSubspace(checkersmoduletypes.ModuleName),
 	)
+
+	app.CheckersKeeper.SetHooks(
+		checkersmoduletypes.NewMultiCheckersHooks(
+			app.LeaderboardKeeper.Hooks(),
+		),
+	)
+
 	checkersModule := checkersmodule.NewAppModule(appCodec, app.CheckersKeeper, app.AccountKeeper, app.BankKeeper)
 
 	// this line is used by starport scaffolding # stargate/app/keeperDefinition
@@ -472,6 +498,7 @@ func NewApp(
 		transferModule,
 		monitoringModule,
 		checkersModule,
+		leaderboardModule,
 		// this line is used by starport scaffolding # stargate/app/appModule
 	)
 
@@ -500,6 +527,7 @@ func NewApp(
 		paramstypes.ModuleName,
 		monitoringptypes.ModuleName,
 		checkersmoduletypes.ModuleName,
+		leaderboardmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	)
 
@@ -524,6 +552,7 @@ func NewApp(
 		ibctransfertypes.ModuleName,
 		monitoringptypes.ModuleName,
 		checkersmoduletypes.ModuleName,
+		leaderboardmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
 	)
 
@@ -553,6 +582,7 @@ func NewApp(
 		feegrant.ModuleName,
 		monitoringptypes.ModuleName,
 		checkersmoduletypes.ModuleName,
+		leaderboardmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	)
 
@@ -580,6 +610,7 @@ func NewApp(
 		transferModule,
 		monitoringModule,
 		checkersModule,
+		leaderboardModule,
 		// this line is used by starport scaffolding # stargate/app/appModule
 	)
 	app.sm.RegisterStoreDecoders()
@@ -772,6 +803,7 @@ func initParamsKeeper(appCodec codec.BinaryCodec, legacyAmino *codec.LegacyAmino
 	paramsKeeper.Subspace(ibchost.ModuleName)
 	paramsKeeper.Subspace(monitoringptypes.ModuleName)
 	paramsKeeper.Subspace(checkersmoduletypes.ModuleName)
+	paramsKeeper.Subspace(leaderboardmoduletypes.ModuleName)
 	// this line is used by starport scaffolding # stargate/app/paramSubspace
 
 	return paramsKeeper
@@ -787,6 +819,27 @@ func (app *App) setupUpgradeHandlers() {
 	app.UpgradeKeeper.SetUpgradeHandler(
 		v1tov1_1.UpgradeName,
 		func(ctx sdk.Context, plan upgradetypes.Plan, vm module.VersionMap) (module.VersionMap, error) {
+			return app.mm.RunMigrations(ctx, app.configurator, vm)
+		},
+	)
+
+	// v1.1 to v2 upgrade handler
+	app.UpgradeKeeper.SetUpgradeHandler(
+		v1_1tov2.UpgradeName,
+		func(ctx sdk.Context, plan upgradetypes.Plan, vm module.VersionMap) (module.VersionMap, error) {
+			vm[leaderboardmoduletypes.ModuleName] = leaderboardmodulemigrationscv2types.ConsensusVersion
+			genesis, err := leaderboardmodulemigrationscv2.ComputeInitGenesis(ctx, app.CheckersKeeper)
+			if err != nil {
+				return vm, err
+			}
+			gen, err := app.appCodec.MarshalJSON(genesis)
+			if err != nil {
+				return vm, err
+			}
+			app.mm.Modules[leaderboardmoduletypes.ModuleName].InitGenesis(
+				ctx,
+				app.appCodec,
+				gen)
 			return app.mm.RunMigrations(ctx, app.configurator, vm)
 		},
 	)
@@ -807,6 +860,10 @@ func (app *App) setupUpgradeHandlers() {
 
 	switch upgradeInfo.Name {
 	case v1tov1_1.UpgradeName:
+	case v1_1tov2.UpgradeName:
+		storeUpgrades = &storetypes.StoreUpgrades{
+			Added: []string{leaderboardmoduletypes.StoreKey},
+		}
 	}
 
 	if storeUpgrades != nil {

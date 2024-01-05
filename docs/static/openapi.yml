@@ -19309,6 +19309,92 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
+  /hugjobk/checkers/leaderboard/leaderboard:
+    get:
+      summary: Queries a Leaderboard by index.
+      operationId: HugjobkCheckersLeaderboardLeaderboard
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              Leaderboard:
+                type: object
+                properties:
+                  winners:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        address:
+                          type: string
+                        wonCount:
+                          type: string
+                          format: uint64
+                        addedAt:
+                          type: string
+                          format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
+  /hugjobk/checkers/leaderboard/params:
+    get:
+      summary: Parameters queries the parameters of the module.
+      operationId: HugjobkCheckersLeaderboardParams
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              params:
+                description: params holds all the parameters of this module.
+                type: object
+                properties:
+                  length:
+                    type: string
+                    format: uint64
+            description: >-
+              QueryParamsResponse is response type for the Query/Params RPC
+              method.
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
   /ibc/apps/interchain_accounts/controller/v1/params:
     get:
       summary: Params queries all parameters of the ICA controller submodule.
@@ -45434,6 +45520,70 @@ definitions:
         type: string
       fifoTailIndex:
         type: string
+  hugjobk.checkers.leaderboard.Leaderboard:
+    type: object
+    properties:
+      winners:
+        type: array
+        items:
+          type: object
+          properties:
+            address:
+              type: string
+            wonCount:
+              type: string
+              format: uint64
+            addedAt:
+              type: string
+              format: uint64
+  hugjobk.checkers.leaderboard.Params:
+    type: object
+    properties:
+      length:
+        type: string
+        format: uint64
+    description: Params defines the parameters for the module.
+  hugjobk.checkers.leaderboard.QueryGetLeaderboardResponse:
+    type: object
+    properties:
+      Leaderboard:
+        type: object
+        properties:
+          winners:
+            type: array
+            items:
+              type: object
+              properties:
+                address:
+                  type: string
+                wonCount:
+                  type: string
+                  format: uint64
+                addedAt:
+                  type: string
+                  format: uint64
+  hugjobk.checkers.leaderboard.QueryParamsResponse:
+    type: object
+    properties:
+      params:
+        description: params holds all the parameters of this module.
+        type: object
+        properties:
+          length:
+            type: string
+            format: uint64
+    description: QueryParamsResponse is response type for the Query/Params RPC method.
+  hugjobk.checkers.leaderboard.Winner:
+    type: object
+    properties:
+      address:
+        type: string
+      wonCount:
+        type: string
+        format: uint64
+      addedAt:
+        type: string
+        format: uint64
   ibc.applications.interchain_accounts.controller.v1.Params:
     type: object
     properties:

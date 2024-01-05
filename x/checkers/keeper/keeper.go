@@ -14,6 +14,7 @@ import (
 type (
 	Keeper struct {
 		bank       types.BankEscrowKeeper
+		hooks      types.CheckersHooks
 		cdc        codec.BinaryCodec
 		storeKey   sdk.StoreKey
 		memKey     sdk.StoreKey
@@ -45,4 +46,14 @@ func NewKeeper(
 
 func (k Keeper) Logger(ctx sdk.Context) log.Logger {
 	return ctx.Logger().With("module", fmt.Sprintf("x/%s", types.ModuleName))
+}
+
+func (keeper *Keeper) SetHooks(hooks types.CheckersHooks) *Keeper {
+	if keeper.hooks != nil {
+		panic("cannot set checkers hooks twice")
+	}
+
+	keeper.hooks = hooks
+
+	return keeper
 }

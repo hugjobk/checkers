@@ -10,6 +10,7 @@ import (
 	types "github.com/cosmos/cosmos-sdk/types"
 	types0 "github.com/cosmos/cosmos-sdk/x/auth/types"
 	gomock "github.com/golang/mock/gomock"
+	types1 "github.com/hugjobk/checkers/x/checkers/types"
 )
 
 // MockAccountKeeper is a mock of AccountKeeper interface.
@@ -135,4 +136,39 @@ func (m *MockBankEscrowKeeper) SendCoinsFromModuleToAccount(ctx types.Context, s
 func (mr *MockBankEscrowKeeperMockRecorder) SendCoinsFromModuleToAccount(ctx, senderModule, recipientAddr, amt interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SendCoinsFromModuleToAccount", reflect.TypeOf((*MockBankEscrowKeeper)(nil).SendCoinsFromModuleToAccount), ctx, senderModule, recipientAddr, amt)
+}
+
+// MockCheckersHooks is a mock of CheckersHooks interface.
+type MockCheckersHooks struct {
+	ctrl     *gomock.Controller
+	recorder *MockCheckersHooksMockRecorder
+}
+
+// MockCheckersHooksMockRecorder is the mock recorder for MockCheckersHooks.
+type MockCheckersHooksMockRecorder struct {
+	mock *MockCheckersHooks
+}
+
+// NewMockCheckersHooks creates a new mock instance.
+func NewMockCheckersHooks(ctrl *gomock.Controller) *MockCheckersHooks {
+	mock := &MockCheckersHooks{ctrl: ctrl}
+	mock.recorder = &MockCheckersHooksMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockCheckersHooks) EXPECT() *MockCheckersHooksMockRecorder {
+	return m.recorder
+}
+
+// AfterPlayerInfoChanged mocks base method.
+func (m *MockCheckersHooks) AfterPlayerInfoChanged(ctx types.Context, playerInfo types1.PlayerInfo) {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "AfterPlayerInfoChanged", ctx, playerInfo)
+}
+
+// AfterPlayerInfoChanged indicates an expected call of AfterPlayerInfoChanged.
+func (mr *MockCheckersHooksMockRecorder) AfterPlayerInfoChanged(ctx, playerInfo interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AfterPlayerInfoChanged", reflect.TypeOf((*MockCheckersHooks)(nil).AfterPlayerInfoChanged), ctx, playerInfo)
 }

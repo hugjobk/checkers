@@ -17,6 +17,7 @@ import CosmosCosmosSdkCosmosTxV1Beta1 from './cosmos/cosmos-sdk/cosmos.tx.v1beta
 import CosmosCosmosSdkCosmosUpgradeV1Beta1 from './cosmos/cosmos-sdk/cosmos.upgrade.v1beta1'
 import CosmosCosmosSdkCosmosVestingV1Beta1 from './cosmos/cosmos-sdk/cosmos.vesting.v1beta1'
 import HugjobkCheckersHugjobkCheckersCheckers from './hugjobk/checkers/hugjobk.checkers.checkers'
+import HugjobkCheckersHugjobkCheckersLeaderboard from './hugjobk/checkers/hugjobk.checkers.leaderboard'
 import IbcGoV3IbcApplicationsInterchainAccountsControllerV1 from './ibc-go/v3/ibc.applications.interchain_accounts.controller.v1'
 import IbcGoV3IbcApplicationsInterchainAccountsHostV1 from './ibc-go/v3/ibc.applications.interchain_accounts.host.v1'
 import IbcGoV3IbcApplicationsTransferV1 from './ibc-go/v3/ibc.applications.transfer.v1'
@@ -45,6 +46,7 @@ export default {
   CosmosCosmosSdkCosmosUpgradeV1Beta1: load(CosmosCosmosSdkCosmosUpgradeV1Beta1, 'cosmos.upgrade.v1beta1'),
   CosmosCosmosSdkCosmosVestingV1Beta1: load(CosmosCosmosSdkCosmosVestingV1Beta1, 'cosmos.vesting.v1beta1'),
   HugjobkCheckersHugjobkCheckersCheckers: load(HugjobkCheckersHugjobkCheckersCheckers, 'hugjobk.checkers.checkers'),
+  HugjobkCheckersHugjobkCheckersLeaderboard: load(HugjobkCheckersHugjobkCheckersLeaderboard, 'hugjobk.checkers.leaderboard'),
   IbcGoV3IbcApplicationsInterchainAccountsControllerV1: load(IbcGoV3IbcApplicationsInterchainAccountsControllerV1, 'ibc.applications.interchain_accounts.controller.v1'),
   IbcGoV3IbcApplicationsInterchainAccountsHostV1: load(IbcGoV3IbcApplicationsInterchainAccountsHostV1, 'ibc.applications.interchain_accounts.host.v1'),
   IbcGoV3IbcApplicationsTransferV1: load(IbcGoV3IbcApplicationsTransferV1, 'ibc.applications.transfer.v1'),

@@ -157,3 +157,66 @@ func TestPlayMoveConsumedGas(t *testing.T) {
 	after := ctx.GasMeter().GasConsumed()
 	require.GreaterOrEqual(t, after, before+types.PlayMoveGas)
 }
+
+func setupMsgServerWithOneGameForPlayMoveAndHooks(t testing.TB) (types.MsgServer, keeper.Keeper, context.Context,
+	*gomock.Controller, *testutil.MockCheckersHooks) {
+	_, k, context, ctrl, escrow := setupMsgServerWithOneGameForPlayMove(t)
+	escrow.ExpectAny(context)
+	hookMock := testutil.NewMockCheckersHooks(ctrl)
+	k.SetHooks(hookMock)
+	msgServer := keeper.NewMsgServerImpl(k)
+	return msgServer, k, context, ctrl, hookMock
+}
+
+func TestPlayerInfoNoHookOnNoWinner(t *testing.T) {
+	msgServer, keeper, context, ctrl, _ := setupMsgServerWithOneGameForPlayMoveAndHooks(t)
+	ctx := sdk.UnwrapSDKContext(context)
+	defer ctrl.Finish()
+	keeper.SetPlayerInfo(ctx, types.PlayerInfo{
+		Index: bob,
+	})
+	keeper.SetPlayerInfo(ctx, types.PlayerInfo{
+		Index: carol,
+	})
+	msgServer.PlayMove(context, &types.MsgPlayMove{
+		Creator:   bob,
+		GameIndex: "1",
+		FromX:     1,
+		FromY:     2,
+		ToX:       2,
+		ToY:       3,
+	})
+}
+
+func TestCompleteGameCallsHook(t *testing.T) {
+	msgServer, keeper, context, ctrl, hookMock := setupMsgServerWithOneGameForPlayMoveAndHooks(t)
+	ctx := sdk.UnwrapSDKContext(context)
+	defer ctrl.Finish()
+	bobCall := hookMock.EXPECT().AfterPlayerInfoChanged(ctx, types.PlayerInfo{
+		Index:          bob,
+		WonCount:       2,
+		LostCount:      2,
+		ForfeitedCount: 3,
+	}).Times(1)
+	hookMock.EXPECT().AfterPlayerInfoChanged(ctx, types.PlayerInfo{
+		Index:          carol,
+		WonCount:       4,
+		LostCount:      6,
+		ForfeitedCount: 6,
+	}).Times(1).After(bobCall)
+
+	keeper.SetPlayerInfo(ctx, types.PlayerInfo{
+		Index:          bob,
+		WonCount:       1,
+		LostCount:      2,
+		ForfeitedCount: 3,
+	})
+	keeper.SetPlayerInfo(ctx, types.PlayerInfo{
+		Index:          carol,
+		WonCount:       4,
+		LostCount:      5,
+		ForfeitedCount: 6,
+	})
+
+	testutil.PlayAllMoves(t, msgServer, context, "1", bob, carol, testutil.Game1Moves)
+}
